@@ -36,7 +36,7 @@ module.exports = function(grunt){
         options: {
           banner: "<%= banner %>"
         },
-        src:['<%= src.js %>'],
+        src:['<%= src.js %>/**/*.js'],
         dest:'<%= distDir %>/assets/<%= pkg.name %>.js'
       },
       jqueryMin:{
@@ -68,7 +68,7 @@ module.exports = function(grunt){
     watch:{
       build: {
         files:[
-          '<%= src.js %>',
+          '<%= src.js %>/**/*.js',
           '<%= src.stylusWatch %>',
           '<%= src.htmlWatch %>'
         ],

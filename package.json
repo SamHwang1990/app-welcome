@@ -1,0 +1,22 @@
+{
+  "name": "app_welcome",
+  "version": "0.0.1",
+  "description": "a welcome page project for www.appedu.org",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SamHwang1990/app-welcome.git"
+  },
+  "keywords": [
+    "app"
+  ],
+  "author": "samhwang1990@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SamHwang1990/app-welcome/issues"
+  },
+  "homepage": "https://github.com/SamHwang1990/app-welcome"
+}

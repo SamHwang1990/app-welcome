@@ -70,7 +70,8 @@ module.exports = function(grunt){
         files:[
           '<%= src.js %>/**/*.js',
           '<%= src.stylusWatch %>',
-          '<%= src.htmlWatch %>'
+          '<%= src.htmlWatch %>',
+          '<%= srcDir %>/imgs/**/*'
         ],
         tasks:['build','timestamp']
       }

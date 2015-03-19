@@ -1,4 +1,4 @@
-/*! app_welcome - v0.0.1 - 2015-03-17
+/*! app_welcome - v0.0.1 - 2015-03-19
  * https://github.com/SamHwang1990/app-welcome
  * Copyright (c) 2015 samhwang1990@gmail.com;
  * Licensed 

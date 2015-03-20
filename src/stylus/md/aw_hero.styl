@@ -73,16 +73,20 @@
       -moz-animation cursor-blink 0.8s linear infinite
       -o-animation cursor-blink 0.8s linear infinite
       animation cursor-blink 0.8s linear infinite
-      content "|"
-      color #999
-      padding-left 3px
+      content ""
+      color #aaa
+      margin-left 3px
+      padding-left 2px
+      padding-top 1px
+      padding-bottom 1px
+      background #aaaaaa
     &.disabled:after
       content none
 
 
   .aw_aoDo_detail
-    padding 14px 0 0 0
-    padding .7rem 0 0 0
+    padding 18px 0 0 0
+    padding .9rem 0 0 0
     text-align center
     font-size 16px
     font-size .8rem
@@ -126,3 +130,20 @@
 
   .aw_aoDiff_item_line
     display none
+
+
+@media screen and (min-width: $screen-sm-min)
+  .aw_brand
+    .aw_brand_statement
+      font-size 18px
+      font-size .9rem
+
+  .aw_aoDo
+    .aw_aoDo_list
+    .aw_aoDo_detail
+      font-size 18px
+      font-size .9rem
+
+    #aw_aoDo_name
+      font-size 30px
+      font-size 1.5rem

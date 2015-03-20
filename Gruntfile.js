@@ -54,6 +54,10 @@ module.exports = function(grunt){
       skrollrJs:{
         src:['<%= src.npm %>/skrollr/dist/skrollr.min.js'],
         dest: '<%= distDir %>/assets/vendor/skrollr.min.js'
+      },
+      malarkey:{
+        src:['<%= src.npm %>/malarkey/dist/malarkey.min.js'],
+        dest: '<%= distDir %>/assets/vendor/malarkey.min.js'
       }
     },
     stylus:{

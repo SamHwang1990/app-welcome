@@ -5,7 +5,8 @@
 requirejs.config({
   paths: {
     jquery: "vendor/jquery.min",
-    skrollr: "vendor/skrollr.min"
+    skrollr: "vendor/skrollr.min",
+    malarkey: "vendor/malarkey.min"
   },
   shim: {
     jquery: {
@@ -13,6 +14,9 @@ requirejs.config({
     },
     skrollr: {
       exports: ['skrollr']
+    },
+    malarkey: {
+      exports: ['malarkey']
     }
   }
 });
@@ -34,7 +38,7 @@ define('responsiveBoundary',[] , function(){
   };
 });
 
-require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr'], function(domReady, $, responsiveBoundary, skrollr){
+require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'malarkey'], function(domReady, $, responsiveBoundary, skrollr, malarkey){
 
   var $awHero, $window, $awPage1Intro, $awPage1Data;
 
@@ -75,6 +79,33 @@ require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr'], function(domRea
       $awHero.height(awHeroHeight);
       $awPage1Intro.css('top', awPage1IntroTop + 'px');
       $awPage1Data.css('top', awPage1DataTop + 'px');
+    },
+    init_awHero_aoName: function(){
+      var el = document.querySelector('#aw_aoDo_name');
+      if (!el) return;
+      var initialText = el.textContent;
+      var pause = 800;
+      var opts = {
+        speed: 40,
+        loop: false,
+        postfix: ''
+      };
+      var typist = malarkey(el, opts);
+      typist
+        .pause(2400).delete(initialText.length)
+        .type('Tracy').pause(pause).delete(5)
+        .type('Becky').pause(pause).delete(5)
+        .type('Lisa').pause(pause).delete(5)
+        .type('Steve').pause(pause).delete(5)
+        .type('Carlos').pause(pause).delete(6)
+        .type('Foster').pause(pause).delete(6)
+        .type('Kendrick').pause(pause).delete(8)
+        .type('Anita').pause(pause).delete(5)
+        .type('Winifred').pause(pause).delete(8)
+        .type('Charles.').pause(1200)
+        .call(function() {
+          $(el).addClass("disabled")
+        });
     }
   };
 
@@ -83,6 +114,7 @@ require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr'], function(domRea
     skrollr.init({
       easing: 'linear'
     });
+    init.init_awHero_aoName();
   });
 
 

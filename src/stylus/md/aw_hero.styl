@@ -20,7 +20,7 @@
   height auto
   top 0
   left 0
-  transition opacity 300ms ease
+  transition opacity 800ms ease
 
 .aw_brand
   display block
@@ -54,10 +54,31 @@
     font-size .8rem
 
   .aw_aoDo_amount
-  .aw_aoDo_name
-    font-size 30px
-    font-size 1.5rem
-    line-height 1.5
+    color #ed5a6b
+    -webkit-animation aw_aoAmount 3s infinite alternate
+    -moz-animation aw_aoAmount 3s infinite alternate
+    -o-animation aw_aoAmount 3s infinite alternate
+    animation aw_aoAmount 3s infinite alternate
+
+  #aw_aoDo_name
+    display block
+    margin 1rem 0 0 0
+    text-align center
+    width auto
+    color #19aee5
+    font-size 20px
+    font-size 1rem
+    &:after
+      -webkit-animation cursor-blink 0.8s linear infinite
+      -moz-animation cursor-blink 0.8s linear infinite
+      -o-animation cursor-blink 0.8s linear infinite
+      animation cursor-blink 0.8s linear infinite
+      content "|"
+      color #cb3837
+      padding-left 3px
+    &.disabled:after
+      content none
+
 
   .aw_aoDo_detail
     padding 14px 0 0 0
@@ -73,7 +94,7 @@
   top 0
   left 0
   display none
-  transition opacity 300ms ease
+  transition opacity 800ms ease
 
 .aw_aoDiff
   display block

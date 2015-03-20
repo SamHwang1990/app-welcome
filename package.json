@@ -21,6 +21,7 @@
   "homepage": "https://github.com/SamHwang1990/app-welcome",
   "dependencies": {
     "jquery": "1.11.2",
+    "malarkey": "^1.1.5",
     "requirejs": "2.1.16",
     "skrollr": "0.6.26"
   },

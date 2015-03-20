@@ -4,6 +4,150 @@
  * Licensed 
  */
 /**
+ * Created by sam on 15-3-20.
+ */
+
+define('awHeroConfig', ['awHero_aoName', 'awHero_size'], function(aoName, size){
+  return {
+    aoName: aoName,
+    size: size
+  }
+});
+
+/**
+ * Created by sam on 15-3-20.
+ */
+
+define('awHero_aoName', ['malarkey'], function(malarkey){
+
+  var el = document.querySelector('#aw_aoDo_name');
+
+  return function(){
+    if (!el) return;
+    var initialText = el.textContent;
+    var pause = 800;
+    var opts = {
+      speed: 40,
+      loop: false,
+      postfix: ''
+    };
+    var typist = malarkey(el, opts);
+    typist
+      .pause(2400).delete(initialText.length)
+      .type('Tracy').pause(pause).delete(5)
+      .type('Becky').pause(pause).delete(5)
+      .type('Lisa').pause(pause).delete(5)
+      .type('Steve').pause(pause).delete(5)
+      .type('Carlos').pause(pause).delete(6)
+      .type('Foster').pause(pause).delete(6)
+      .type('Kendrick').pause(pause).delete(8)
+      .type('Anita').pause(pause).delete(5)
+      .type('Winifred').pause(pause).delete(8)
+      .type('Charles.').pause(1200)
+      .call(function() {
+        $(el).addClass("disabled")
+      });
+  };
+});
+
+/**
+ * Created by sam on 15-3-20.
+ */
+
+define('awHero_size', ['jquery'], function($){
+
+  var $awHero, $awPage1Intro, $awPage1Data;
+  var awHero_PERCENT = 0.95;
+
+  $awHero = $('.aw_hero');
+  $awPage1Intro = $awHero.find('.aw_page1_intro').eq(0);
+  $awPage1Data = $awHero.find('.aw_page1_data').eq(0);
+
+  // 配置模块.aw_hero 的高度
+  var setHeroSize = function(windowHeight){
+    $awHero.height(windowHeight * awHero_PERCENT);
+    return $awHero.height();
+  };
+
+  // 配置模块 .aw_page1_intro 的top 位置
+  var setIntroSize = function(awHeroHeight){
+    var moduleTop;
+    var moduleHeight = $awPage1Intro.height();
+
+    var moduleTopBasic = (awHeroHeight - moduleHeight)/2;
+
+    moduleTop = moduleTopBasic;
+    setTop(moduleTop, $awPage1Intro, awHeroHeight);
+    return moduleTop;
+  };
+
+  // 配置模块 .aw_page1_data 的top 位置
+  var setDataSize = function(awHeroHeight){
+    var moduleTop;
+    var moduleHeight = $awPage1Data.height();
+
+    var moduleTopBasic = (awHeroHeight - moduleHeight)/ 2;
+    moduleTop = moduleTopBasic;
+
+    setTop(moduleTop, $awPage1Data, awHeroHeight);
+    return moduleTop;
+  };
+
+  /*
+  * 用于检测元素高度以及top 的位置是否超出参考高度值
+  *
+  * @param top: 元素的top 位置
+  * @param elementHeight: 元素的高度
+  * @param relHeight: 参考高度值
+  * return: 符合规则的元素top 位置
+  *
+  * 如果top + elementHeight > relHeight，则将top 减去5px 再进行检测
+  * */
+  var checkAndReturnSize = function(top, elementHeight, relHeight){
+    if((top + elementHeight) > relHeight){
+      return checkAndReturnSize(top-5, elementHeight, relHeight);
+    }else{
+      return top;
+    }
+  };
+
+  /*
+  * 用于配置给定元素的top 位置
+  *
+  * @param: 给定的top 值
+  * @param: 给定元素
+  * @param: 模块.aw_hero 模块的高度
+  *
+  * */
+  var setTop = function(moduleTop, $element, awHeroHeight){
+    var elementHeight = $element.height();
+    moduleTop = checkAndReturnSize(moduleTop, elementHeight, awHeroHeight);
+    $element.css('top', moduleTop + 'px');
+  };
+
+  var initSize = function(done){
+    var $window = $(window);
+    var awHeroHeight = setHeroSize($window.height());
+    setIntroSize(awHeroHeight);
+    setDataSize(awHeroHeight);
+    if(done instanceof Function){
+      return done();
+    }
+    return;
+  };
+
+  var resetSize = function(done){
+    return initSize(done);
+  };
+
+  return {
+    initSize: initSize,
+    resetSize: resetSize
+  }
+
+});
+
+/**
  * @license RequireJS domReady 2.0.1 Copyright (c) 2010-2012, The Dojo Foundation All Rights Reserved.
  * Available via the MIT or new BSD license.
  * see: http://github.com/requirejs/domReady for details
@@ -133,6 +277,26 @@ define('domReady', function () {
   return domReady;
 });
 /**
+ * Created by sam on 15-3-20.
+ */
+
+define('responsiveBoundary',[] , function(){
+  var XS = 480, SM = 768, MD = 992, LG = 1200;
+  return {
+    xs: XS,
+    xsMin: XS,
+    xsMax: SM -1,
+    sm: SM,
+    smMin: SM,
+    smMax: MD -1,
+    md: MD,
+    mdMin: MD,
+    mdMax: LG -1,
+    lg: LG,
+    lgMin: LG
+  };
+});
+/**
  * Created by sam on 15-3-12.
  */
 
@@ -155,91 +319,14 @@ requirejs.config({
   }
 });
 
-define('responsiveBoundary',[] , function(){
-  var XS = 480, SM = 768, MD = 992, LG = 1200;
-  return {
-    xs: XS,
-    xsMin: XS,
-    xsMax: SM -1,
-    sm: SM,
-    smMin: SM,
-    smMax: MD -1,
-    md: MD,
-    mdMin: MD,
-    mdMax: LG -1,
-    lg: LG,
-    lgMin: LG
-  };
-});
-
-require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'malarkey'], function(domReady, $, responsiveBoundary, skrollr, malarkey){
-
-  var $awHero, $window, $awPage1Intro, $awPage1Data;
-
-  var viewPortHeight, halfViewPortHeight, viewPortWidth, awHeroHeight;
-
-  var MIN_awPage1IntroTop = 0.04;
-
-  $window = $(window);
-  $awHero = $('.aw_hero');
-  $awPage1Intro = $awHero.find('.aw_page1_intro').eq(0);
-  $awPage1Data = $awHero.find('.aw_page1_data').eq(0);
-
-  viewPortHeight = $window.height();
-  halfViewPortHeight = viewPortHeight/2;
-  viewPortWidth = $(window).width();
-  // 故意不把模块.aw_hero 覆盖整个屏幕，留有空地，让读者觉得底下还有内容
-  awHeroHeight = viewPortHeight * 0.95;
+require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'awHeroConfig'],
+  function(domReady, $, responsiveBoundary, skrollr, awHeroConfig){
 
   var init = {
     init_awHero: function(){
-      /* 计算相关模块的位置*/
-
-      // 模块.aw_page1_intro 的Top 是父元素中间靠上一点
-      var awPage1IntroTop = (awHeroHeight - $awPage1Intro.height())/2 - awHeroHeight * 0.16;
-      if(awPage1IntroTop <=0){
-        awPage1IntroTop = awHeroHeight * MIN_awPage1IntroTop;
-      }
-
-      // 以sm 为临界点，模块.aw_page1_data 的Top 是父元素中间靠上或靠下一点
-      var awPage1DataTopBasic = (awHeroHeight - $awPage1Data.height())/ 2, awPage1DataTop;
-      if(viewPortWidth <= responsiveBoundary.smMax){
-        awPage1DataTop = awPage1DataTopBasic - awHeroHeight * 0.16;
-      }else{
-        awPage1DataTop = awPage1DataTopBasic + awHeroHeight * 0.1;
-      }
-
-      // 设置相关模块的位置和大小
-      $awHero.height(awHeroHeight);
-      $awPage1Intro.css('top', awPage1IntroTop + 'px');
-      $awPage1Data.css('top', awPage1DataTop + 'px');
-    },
-    init_awHero_aoName: function(){
-      var el = document.querySelector('#aw_aoDo_name');
-      if (!el) return;
-      var initialText = el.textContent;
-      var pause = 800;
-      var opts = {
-        speed: 40,
-        loop: false,
-        postfix: ''
-      };
-      var typist = malarkey(el, opts);
-      typist
-        .pause(2400).delete(initialText.length)
-        .type('Tracy').pause(pause).delete(5)
-        .type('Becky').pause(pause).delete(5)
-        .type('Lisa').pause(pause).delete(5)
-        .type('Steve').pause(pause).delete(5)
-        .type('Carlos').pause(pause).delete(6)
-        .type('Foster').pause(pause).delete(6)
-        .type('Kendrick').pause(pause).delete(8)
-        .type('Anita').pause(pause).delete(5)
-        .type('Winifred').pause(pause).delete(8)
-        .type('Charles.').pause(1200)
-        .call(function() {
-          $(el).addClass("disabled")
-        });
+      awHeroConfig.size.initSize(function(){
+        awHeroConfig.aoName();
+      });
     }
   };
 
@@ -248,11 +335,7 @@ require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'malarkey'], fun
     skrollr.init({
       easing: 'linear'
     });
-    init.init_awHero_aoName();
   });
-
-
-
 });
 /**
  * Created by sam on 15-3-12.

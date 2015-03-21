@@ -35,7 +35,7 @@ define('awHero_size', ['jquery'], function($){
     var moduleHeight = $awPage1Data.height();
 
     var moduleTopBasic = (awHeroHeight - moduleHeight)/ 2;
-    moduleTop = moduleTopBasic;
+    moduleTop = moduleTopBasic + 5 + 20; // 鉴于skyrollr 参数设置的是5px
 
     setTop(moduleTop, $awPage1Data, awHeroHeight);
     return moduleTop;

@@ -1,4 +1,4 @@
-/*! app_welcome - v0.0.1 - 2015-03-20
+/*! app_welcome - v0.0.1 - 2015-03-21
  * https://github.com/SamHwang1990/app-welcome
  * Copyright (c) 2015 samhwang1990@gmail.com;
  * Licensed 
@@ -28,7 +28,7 @@ define('awHero_aoName', ['malarkey'], function(malarkey){
     var pause = 800;
     var opts = {
       speed: 40,
-      loop: false,
+      loop: true,
       postfix: ''
     };
     var typist = malarkey(el, opts);
@@ -43,10 +43,10 @@ define('awHero_aoName', ['malarkey'], function(malarkey){
       .type('Kendrick').pause(pause).delete(8)
       .type('Anita').pause(pause).delete(5)
       .type('Winifred').pause(pause).delete(8)
-      .type('Charles.').pause(1200)
-      .call(function() {
+      .type(initialText)
+      /*.call(function() {
         $(el).addClass("disabled")
-      });
+      })*/;
   };
 });
 
@@ -87,7 +87,7 @@ define('awHero_size', ['jquery'], function($){
     var moduleHeight = $awPage1Data.height();
 
     var moduleTopBasic = (awHeroHeight - moduleHeight)/ 2;
-    moduleTop = moduleTopBasic;
+    moduleTop = moduleTopBasic + 5 + 20; // 鉴于skyrollr 参数设置的是5px
 
     setTop(moduleTop, $awPage1Data, awHeroHeight);
     return moduleTop;

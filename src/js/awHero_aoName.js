@@ -12,7 +12,7 @@ define('awHero_aoName', ['malarkey'], function(malarkey){
     var pause = 800;
     var opts = {
       speed: 40,
-      loop: false,
+      loop: true,
       postfix: ''
     };
     var typist = malarkey(el, opts);
@@ -27,9 +27,9 @@ define('awHero_aoName', ['malarkey'], function(malarkey){
       .type('Kendrick').pause(pause).delete(8)
       .type('Anita').pause(pause).delete(5)
       .type('Winifred').pause(pause).delete(8)
-      .type('Charles.').pause(1200)
-      .call(function() {
+      .type(initialText)
+      /*.call(function() {
         $(el).addClass("disabled")
-      });
+      })*/;
   };
 });

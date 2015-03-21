@@ -135,15 +135,76 @@
 @media screen and (min-width: $screen-sm-min)
   .aw_brand
     .aw_brand_statement
-      font-size 18px
-      font-size .9rem
+      font-size 20px
+      font-size 1rem
 
   .aw_aoDo
     .aw_aoDo_list
     .aw_aoDo_detail
-      font-size 18px
-      font-size .9rem
+      font-size 20px
+      font-size 1rem
 
     #aw_aoDo_name
+      display inline-block
+      font-size 40px
+      font-size 2rem
+
+
+  .aw_aoDiff
+    .aw_aoDiff_statement
+      p
+        font-size 30px
+        font-size 1.5rem
+
+    .aw_aoDiff_item
+      margin 12px 0
+      margin .6rem 0
+      font-size 20px
+      font-size 1rem
+
+@media screen and (min-width: $screen-md-min)
+  .aw_aoDiff_detail
+    position absolute
+    top 0
+    left 0
+    right 0
+    width 100%
+    max-width 1000px
+    max-width 50rem
+    margin 0 auto
+
+  .aw_aoDiff_item
+    position absolute
+    margin 0
+    width 250px
+    width 12.5rem
+    span
+      display block
+      width 100%
+      text-align center
+    .aw_aoDiff_item_title
+      font-size 12px
+      font-size .6rem
+    .aw_aoDiff_item_num
       font-size 30px
       font-size 1.5rem
+    .aw_aoDiff_item_line
+      display block
+      height 50px
+      height 2.5rem
+      width 124px
+      width 6.2rem
+      border-right 1px solid #fff
+
+    &:nth-of-type(1)
+      left 0
+      top 0px
+    &:nth-of-type(2)
+      left 25%
+      top -30px
+    &:nth-of-type(3)
+      left 50%
+      top -60px
+    &:nth-of-type(4)
+      right 0
+      top -90px

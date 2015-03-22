@@ -132,49 +132,6 @@
   .aw_aoDiff_item_line
     display none
 
-.aw_ao
-  position relative
-  .aw_ao_wrap
-    width 100%
-    height auto
-.aw_ao_detail
-  width 90%
-  margin 20px auto
-  margin 1rem auto
-  box-shadow 0px 0px 5px 1px #ddd
-.aw_ao_img
-  display block
-  width 100%
-  height auto
-.aw_ao_intro
-  height 150px
-  height 7.5rem
-  padding 0 16px
-  padding 0 .8rem
-  background #6699cc
-  color #fff
-  overflow hidden
-.aw_ao_name
-  padding-top 10px
-  padding-top .5rem
-  margin-bottom 10px
-  margin-bottom .5rem
-  font-size 20px
-  font-size 1rem
-  font-weight normal
-.aw_ao_experience
-  h3
-    font-size 14px
-    font-size .7rem
-    font-weight normal
-    margin-bottom 6px
-    margin-bottom .3rem
-  p,ul
-    font-size 12px
-    font-size .6rem
-    line-height 1.5
-
-
 @media screen and (min-width: $screen-sm-min)
   .aw_brand
     .aw_brand_statement
@@ -208,12 +165,10 @@
       font-size 20px
       font-size 1rem
 
-  .aw_ao
-    .aw_ao_wrap
-      width 90%
-      margin 0 auto
-
 @media screen and (min-width: $screen-md-min)
+  .aw_aoDiff
+    padding-bottom 0
+
   .aw_aoDiff_detail
     position absolute
     top 0
@@ -255,44 +210,10 @@
       top -30px
     &:nth-of-type(2)
       left 25%
-      top -80px
+      top -60px
     &:nth-of-type(3)
       left 50%
-      top -130px
+      top -90px
     &:nth-of-type(4)
       right 0
-      top -180px
-
-@media screen and (min-width: $screen-xs-min) and (max-width: $screen-xs-max)
-  .aw_ao_detail
-    float left
-    width 49%
-    margin-top 16px
-    margin-top .8rem
-    margin-bottom 16px
-    margin-bottom .8rem
-    margin-right 2%
-    &:nth-of-type(2n)
-      margin-right 0
-@media screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max)
-  .aw_ao_detail
-    float left
-    width 32%
-    margin-top 16px
-    margin-top .8rem
-    margin-bottom 16px
-    margin-bottom .8rem
-    margin-right 2%
-    &:nth-of-type(3n)
-      margin-right 0
-@media screen and (min-width: $screen-md-min) and (max-width: $screen-md-max)
-  .aw_ao_detail
-    float left
-    width 23.8%
-    margin-top 16px
-    margin-top .8rem
-    margin-bottom 16px
-    margin-bottom .8rem
-    margin-right 1.6%
-    &:nth-of-type(4n)
-      margin-right 0
+      top -120px

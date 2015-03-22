@@ -24,7 +24,7 @@ define('awHero_size', ['jquery'], function($){
 
     var moduleTopBasic = (awHeroHeight - moduleHeight)/2;
 
-    moduleTop = moduleTopBasic;
+    moduleTop = moduleTopBasic * 0.8;
     setTop(moduleTop, $awPage1Intro, awHeroHeight);
     return moduleTop;
   };
@@ -35,7 +35,7 @@ define('awHero_size', ['jquery'], function($){
     var moduleHeight = $awPage1Data.height();
 
     var moduleTopBasic = (awHeroHeight - moduleHeight)/ 2;
-    moduleTop = moduleTopBasic + 5 + 20; // 鉴于skyrollr 参数设置的是5px
+    moduleTop = moduleTopBasic * 0.8 + 5 + 20; // 鉴于skyrollr 参数设置的是5px
 
     setTop(moduleTop, $awPage1Data, awHeroHeight);
     return moduleTop;

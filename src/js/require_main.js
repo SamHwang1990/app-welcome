@@ -21,12 +21,13 @@ requirejs.config({
   }
 });
 
-require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'awHeroConfig'],
-  function(domReady, $, responsiveBoundary, skrollr, awHeroConfig){
+require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'awHeroConfig', 'awAO_size'],
+  function(domReady, $, responsiveBoundary, skrollr, awHeroConfig, awAOSize){
     var init = {
       init_awHero: function(){
         awHeroConfig.size.initSize(function(){
           awHeroConfig.aoName();
+          awAOSize.initSize();
         });
       }
     };
@@ -34,6 +35,9 @@ require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'awHeroConfig'],
     var reset = {
       reset_awHero: function(){
         return awHeroConfig.size.resetSize();
+      },
+      reset_awAO: function(){
+        return awAOSize.resetSize();
       }
     };
 
@@ -46,6 +50,7 @@ require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'awHeroConfig'],
 
     $(window).resize(function(){
       reset.reset_awHero();
+      reset.reset_awAO();
     });
 
 });

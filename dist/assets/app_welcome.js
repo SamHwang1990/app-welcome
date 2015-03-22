@@ -1,4 +1,4 @@
-/*! app_welcome - v0.0.1 - 2015-03-21
+/*! app_welcome - v0.0.1 - 2015-03-22
  * https://github.com/SamHwang1990/app-welcome
  * Copyright (c) 2015 samhwang1990@gmail.com;
  * Licensed 
@@ -76,7 +76,7 @@ define('awHero_size', ['jquery'], function($){
 
     var moduleTopBasic = (awHeroHeight - moduleHeight)/2;
 
-    moduleTop = moduleTopBasic;
+    moduleTop = moduleTopBasic * 0.8;
     setTop(moduleTop, $awPage1Intro, awHeroHeight);
     return moduleTop;
   };
@@ -87,7 +87,7 @@ define('awHero_size', ['jquery'], function($){
     var moduleHeight = $awPage1Data.height();
 
     var moduleTopBasic = (awHeroHeight - moduleHeight)/ 2;
-    moduleTop = moduleTopBasic + 5 + 20; // 鉴于skyrollr 参数设置的是5px
+    moduleTop = moduleTopBasic * 0.8 + 5 + 20; // 鉴于skyrollr 参数设置的是5px
 
     setTop(moduleTop, $awPage1Data, awHeroHeight);
     return moduleTop;
@@ -277,6 +277,53 @@ define('domReady', function () {
   return domReady;
 });
 /**
+ * Created by sam on 15-3-22.
+ */
+
+define('awAO_size', ['jquery', 'responsiveBoundary'], function($, responsiveBoundary){
+  var $awAO, $awAOWrap, $window;
+  var $awHero, $awPage1Intro, $awPage1Data;
+  var awAO_size;
+
+  $awHero = $('.aw_hero');
+  $awPage1Intro = $awHero.find('.aw_page1_intro').eq(0);
+  $awPage1Data = $awHero.find('.aw_page1_data').eq(0);
+
+  $awAO = $('.aw_ao').eq(0);
+  $awAOWrap = $awAO.find('.aw_ao_wrap').eq(0);
+  $window = $(window);
+
+  var setModuleSize = function(){
+    var moduleHeight = $awAOWrap.height();
+    var moduleWidth = $awAOWrap.width();
+    var windowWidth = $window.width();
+    var awHeroHeight = $awHero.height();
+    var awPage1Intro_offsetBottom = parseInt($awPage1Intro.css('top'), 10) + $awPage1Intro.height();
+    var awPage1Data_offsetBottom = parseInt($awPage1Data.css('top'), 10) + $awPage1Data.height();
+
+    var awHero_bottomLeft =
+      (awPage1Data_offsetBottom > awPage1Intro_offsetBottom)
+        ? (awHeroHeight - awPage1Data_offsetBottom)
+        : (awHeroHeight - awPage1Intro_offsetBottom);
+
+    if((windowWidth >= responsiveBoundary.lgMin) && (awHero_bottomLeft) > moduleHeight){
+      $awAOWrap.css({position: 'absolute', bottom: 0, left: (windowWidth - moduleWidth)/2});
+    }else{
+      $awAOWrap.css({position: 'relative', bottom: 0, left: 0});
+    }
+  };
+
+  awAO_size = {
+    initSize: setModuleSize,
+    resetSize: function(){
+      return setModuleSize();
+    }
+  };
+
+  return awAO_size;
+});
+
+/**
  * Created by sam on 15-3-20.
  */
 
@@ -319,12 +366,13 @@ requirejs.config({
   }
 });
 
-require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'awHeroConfig'],
-  function(domReady, $, responsiveBoundary, skrollr, awHeroConfig){
+require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'awHeroConfig', 'awAO_size'],
+  function(domReady, $, responsiveBoundary, skrollr, awHeroConfig, awAOSize){
     var init = {
       init_awHero: function(){
         awHeroConfig.size.initSize(function(){
           awHeroConfig.aoName();
+          awAOSize.initSize();
         });
       }
     };
@@ -332,6 +380,9 @@ require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'awHeroConfig'],
     var reset = {
       reset_awHero: function(){
         return awHeroConfig.size.resetSize();
+      },
+      reset_awAO: function(){
+        return awAOSize.resetSize();
       }
     };
 
@@ -344,6 +395,7 @@ require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'awHeroConfig'],
 
     $(window).resize(function(){
       reset.reset_awHero();
+      reset.reset_awAO();
     });
 
 });

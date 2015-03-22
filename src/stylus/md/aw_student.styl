@@ -6,7 +6,9 @@
   padding 1rem 0
 
 .aw_student_statement
+  width 95%
   text-align center
+  margin 0 auto
   &:before
     content ''
     display block
@@ -38,34 +40,119 @@
   margin 1rem auto 0 auto
 
 .aw_student_item
+  position relative
   width 90%
   margin 0 auto 20px auto
   margin 0 auto 1rem auto
   box-shadow 0px 0px 5px 1px #ddd
+
+  &:hover
+    .aw_student_thxToApp
+      height 100%
 
 .aw_student_img
   display block
   width 100%
   height auto
 .aw_student_intro
-  height 100px
-  height 5rem
-  padding 0 16px
-  padding 0 .8rem
+  height 140px
+  height 7rem
   background #ef786c
   color #fff
   overflow hidden
 .aw_student_name
-  padding-top 10px
-  padding-top .5rem
+  padding 10px 16px 0 16px
+  padding .5rem .8rem 0 .8rem
   margin-bottom 10px
   margin-bottom .5rem
   font-size 20px
   font-size 1rem
   font-weight normal
-
 .aw_student_schoolNow
 .aw_student_schoolOffer
-  font-size 12px
-  font-size .6rem
+  padding 0px 16px 0 16px
+  padding 0rem .8rem 0 .8rem
+  font-size 14px
+  font-size .7rem
   line-height 1.5
+
+.aw_student_thxToApp
+  position absolute
+  overflow hidden
+  height 0
+  width 100%
+  bottom 0
+  left 0
+  background #333333
+  transition height .3s ease-in
+  p
+    padding 0 16px
+    padding 0 .8rem
+    height 60%
+    margin-top 20%
+    font-size 14px
+    font-size .7rem
+    line-height 1.6
+  .aw_student_thxToApp_title
+    font-size 18px
+    font-size .9rem
+
+@media screen and (min-width: $screen-sm-min)
+  .aw_student
+    width 90%
+    margin 0 auto
+
+@media screen and (min-width: $screen-xs-min) and (max-width: $screen-xs-max)
+  .aw_student_item
+    float left
+    width 49%
+    margin-top 16px
+    margin-top .8rem
+    margin-bottom 16px
+    margin-bottom .8rem
+    margin-right 2%
+    &:nth-of-type(2n)
+      margin-right 0
+
+@media screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max)
+  .aw_student_item
+    float left
+    width 32%
+    margin-top 16px
+    margin-top .8rem
+    margin-bottom 16px
+    margin-bottom .8rem
+    margin-right 2%
+    &:nth-of-type(3n)
+      margin-right 0
+    &:nth-of-type(n+7)
+      display none
+
+@media screen and (min-width: $screen-md-min) and (max-width: $screen-md-max)
+  .aw_student_item
+    float left
+    width 23.8%
+    margin-top 16px
+    margin-top .8rem
+    margin-bottom 16px
+    margin-bottom .8rem
+    margin-right 1.6%
+    &:nth-of-type(4n)
+      margin-right 0
+    &:nth-of-type(n+9)
+      display none
+
+@media screen and (min-width: $screen-lg-min)
+  .aw_student
+    max-width 1440px
+    max-width 72rem
+  .aw_student_item
+    float left
+    width 19%
+    margin-top 16px
+    margin-top .8rem
+    margin-bottom 16px
+    margin-bottom .8rem
+    margin-right 1.25%
+    &:nth-of-type(5n)
+      margin-right 0

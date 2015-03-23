@@ -3,7 +3,7 @@
  */
 
 define('awAO_size', ['jquery', 'responsiveBoundary'], function($, responsiveBoundary){
-  var $awAO, $awAOWrap, $window;
+  var $awAO, $awAOStatement, $awAOWrap, $window;
   var $awHero, $awPage1Intro, $awPage1Data;
   var awAO_size;
 
@@ -12,6 +12,7 @@ define('awAO_size', ['jquery', 'responsiveBoundary'], function($, responsiveBoun
   $awPage1Data = $awHero.find('.aw_page1_data').eq(0);
 
   $awAO = $('.aw_ao').eq(0);
+  $awAOStatement = $awAO.find('.aw_ao_statement').eq(0);
   $awAOWrap = $awAO.find('.aw_ao_wrap').eq(0);
   $window = $(window);
 
@@ -30,8 +31,10 @@ define('awAO_size', ['jquery', 'responsiveBoundary'], function($, responsiveBoun
 
     if((windowWidth >= responsiveBoundary.lgMin) && (awHero_bottomLeft) > moduleHeight){
       $awAOWrap.css({position: 'absolute', bottom: 0, left: (windowWidth - moduleWidth)/2});
+      $awAOStatement.css({display: 'none'});
     }else{
       $awAOWrap.css({position: 'relative', bottom: 0, left: 0});
+      $awAOStatement.css({display: 'block'});
     }
   };
 

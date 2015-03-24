@@ -327,6 +327,31 @@ define('domReady', function () {
   return domReady;
 });
 /**
+ * Created by sam on 15-3-24.
+ */
+
+define('init53kf', ['jquery'], function($){
+  var url53 = 'http://tb.53kf.com/kf.php?arg=10053922&style=1';
+  return function(){
+
+    $.ajax({
+      url: url53,
+
+      // The name of the callback parameter, as specified by the YQL service
+      jsonp: "callback",
+
+      // Tell jQuery we're expecting JSONP
+      dataType: "jsonp",
+
+      // Work with the response
+      success: function( response ) {
+        console.log( response ); // server response
+      }
+    });
+  };
+});
+
+/**
  * Created by sam on 15-3-20.
  */
 
@@ -369,14 +394,17 @@ requirejs.config({
   }
 });
 
-require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'awHeroConfig', 'awAO_size'],
-  function(domReady, $, responsiveBoundary, skrollr, awHeroConfig, awAOSize){
+require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'awHeroConfig', 'awAO_size', 'init53kf'],
+  function(domReady, $, responsiveBoundary, skrollr, awHeroConfig, awAOSize, init53kf){
     var init = {
       init_awHero: function(){
         awHeroConfig.size.initSize(function(){
           awHeroConfig.aoName();
           awAOSize.initSize();
         });
+      },
+      init_53kf: function(){
+        init53kf();
       }
     };
 
@@ -394,6 +422,7 @@ require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'awHeroConfig', 
       skrollr.init({
         easing: 'linear'
       });
+      init.init_53kf();
     });
 
     $(window).resize(function(){

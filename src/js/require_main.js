@@ -21,14 +21,17 @@ requirejs.config({
   }
 });
 
-require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'awHeroConfig', 'awAO_size'],
-  function(domReady, $, responsiveBoundary, skrollr, awHeroConfig, awAOSize){
+require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'awHeroConfig', 'awAO_size', 'init53kf'],
+  function(domReady, $, responsiveBoundary, skrollr, awHeroConfig, awAOSize, init53kf){
     var init = {
       init_awHero: function(){
         awHeroConfig.size.initSize(function(){
           awHeroConfig.aoName();
           awAOSize.initSize();
         });
+      },
+      init_53kf: function(){
+        init53kf();
       }
     };
 
@@ -46,6 +49,7 @@ require(['domReady', 'jquery', 'responsiveBoundary', 'skrollr', 'awHeroConfig', 
       skrollr.init({
         easing: 'linear'
       });
+      init.init_53kf();
     });
 
     $(window).resize(function(){
